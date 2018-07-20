@@ -7,10 +7,9 @@ from peewee import *
 DATABASE = SqliteDatabase('Journal.db')
 
 
-
 class Entry(Model):
     title = CharField()
-    date = DateTimeField(default = datetime.datetime.now)
+    date = DateField(default=datetime.date.today)
     time_spent = IntegerField()
     what_i_learned = TextField()
     resources = TextField()
