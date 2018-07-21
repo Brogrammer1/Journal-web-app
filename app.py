@@ -22,7 +22,7 @@ def list():
     return render_template('index.html', entries=entries)
 
 
-@app.route('/entries/delete/<int:entry_id>/entry')
+@app.route('/entries/delete/<int:entry_id>')
 def delete(entry_id):
     entry = models.Entry.get(
         models.Entry.id == entry_id
@@ -32,7 +32,7 @@ def delete(entry_id):
     return redirect(url_for('list'))
 
 
-@app.route('/detail/<int:entry_id>')
+@app.route('/details/<int:entry_id>')
 def detail(entry_id):
     entry = models.Entry.get(
         models.Entry.id == entry_id
@@ -42,7 +42,7 @@ def detail(entry_id):
 
 
 @app.route('/entry', methods=('GET', 'POST'))
-@app.route('/entry<int:entry_id>', methods=('GET', 'POST'))
+@app.route('/entry/edit/<int:entry_id>', methods=('GET', 'POST'))
 def add_edit_entry(entry_id=None):
     if entry_id:
         entry = models.Entry.get(
