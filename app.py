@@ -40,9 +40,8 @@ def detail(entry_id):
     )
     return render_template('detail.html', entry=entry)
 
-
-@app.route('/entry', methods=('GET', 'POST'))
-@app.route('/entry/edit/<int:entry_id>', methods=('GET', 'POST'))
+@app.route('/entry/<int:entry_id>', methods=('GET', 'POST'))
+@app.route('/entry/', methods=('GET', 'POST'))
 def add_edit_entry(entry_id=None):
     if entry_id:
         entry = models.Entry.get(
@@ -73,6 +72,7 @@ def add_edit_entry(entry_id=None):
                                 )
             return redirect(url_for('index'))
         return render_template('new.html', form=form)
+
 
 
 if __name__ == '__main__':
